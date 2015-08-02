@@ -11,6 +11,7 @@ RSpec.describe Api::V1::ReadingsController, :type => :controller do
       request.env["HTTP_ACCEPT"] = 'application/json'
     end
 
+    #test passes, but method may be invalid
     context "invalid auth" do
       it "responds with 401:unauthorized" do
         post :create, @params, 'X-Api-Key' => "helloworld"
@@ -18,6 +19,7 @@ RSpec.describe Api::V1::ReadingsController, :type => :controller do
       end
     end
 
+    #function works, but testing is not valid
     context "valid auth" do
       xit "responds with 201:created" do
         @sensor = Sensor.create!
