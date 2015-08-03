@@ -23,6 +23,7 @@ class Api::V1::ReadingsController < Api::ApiController
 
   def create
     @reading = Reading.new(reading_params)
+    @reading.datetime = DateTime.now
     if @reading.save
       respond_to do |format|
         format.json { render json: :show, status: :created, location: api_v1_reading_url(@reading) }
@@ -33,7 +34,7 @@ class Api::V1::ReadingsController < Api::ApiController
   private
 
     def reading_params
-      params.require(:reading).permit(:temperature, :humidity, :datetime)
+      params.require(:reading).permit(:temperature, :humidity)
     end
 
 end
