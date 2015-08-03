@@ -26,6 +26,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # respond_to
 gem 'responders', '~>2.0'
 
+# static pages controller
+gem 'high_voltage', '~> 2.4.0'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
