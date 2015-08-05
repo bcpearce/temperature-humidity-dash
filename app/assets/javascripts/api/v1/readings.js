@@ -4,6 +4,7 @@
 
 google.load("visualization", "1", {packages:["corechart"]});
 google.setOnLoadCallback(drawChart);
+setInterval(drawChart(), 60000);
 
 function drawChart() {
 
@@ -45,7 +46,6 @@ function drawChart() {
 
       var chart = new google.visualization.AreaChart(document.getElementById('temp_chart_div'));
       chart.draw(tableData, options);
-      setInterval(drawChart(), 60000);
   });
 
 }
