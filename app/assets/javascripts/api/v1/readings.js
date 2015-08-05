@@ -3,8 +3,8 @@
 // You can use CoffeeScript in this file: http://coffeescript.org/
 
 google.load("visualization", "1", {packages:["corechart"]});
+//google.setOnLoadCallback(drawChart);
 google.setOnLoadCallback(drawChart);
-setInterval(drawChart(), 60000);
 
 function drawChart() {
 
@@ -36,12 +36,13 @@ function drawChart() {
           1: {targetAxisIndex: 1}
         },
         vAxes: {
-          0: {title: 'Temps (Fahrenheit)'},
-          1: {title: 'Humidity (%)'}
+          0: {title: 'Temps (Fahrenheit)', minValue:40, maxValue:100},
+          1: {title: 'Humidity (%)', minValue:0, maxValue:80}
         },
         backgroundColor: {fill:'#222', stroke:'#aaa'},
         colors: ['yellow', 'blue'],
-        areaOpacity: 0.12
+        areaOpacity: 0.12,
+        smoothLine: true
       };
 
       var chart = new google.visualization.AreaChart(document.getElementById('temp_chart_div'));
