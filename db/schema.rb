@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20150802010152) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "days", force: :cascade do |t|
     t.decimal  "avg_temperature"
     t.decimal  "avg_humidity"
