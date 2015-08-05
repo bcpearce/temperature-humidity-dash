@@ -45,7 +45,7 @@ function drawChart() {
 
       var chart = new google.visualization.AreaChart(document.getElementById('temp_chart_div'));
       chart.draw(tableData, options);
-      setInterval(drawChart(), 5000);
+      setInterval(drawChart(), 60000);
   });
 
 }
