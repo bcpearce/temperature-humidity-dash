@@ -20,6 +20,11 @@ function drawChart() {
         temp = parseFloat(data[i].temperature);
         hum = parseFloat(data[i].humidity);
         vizData.push([date, temp, hum]);
+        //set the latest ones
+        if (i == (dataLength-1)) {
+          $("#latest_temperature").html("(" + temp + "&#8457)")
+          $("#latest_humidity").html("(" + hum + "%)")
+        }
       }
 
       var tableData = google.visualization.arrayToDataTable(vizData);
@@ -36,7 +41,7 @@ function drawChart() {
           1: {targetAxisIndex: 1}
         },
         vAxes: {
-          0: {title: 'Temps (Fahrenheit)', minValue:40, maxValue:100},
+          0: {title: 'Temperature (Fahrenheit)', minValue:40, maxValue:100},
           1: {title: 'Humidity (%)', minValue:0, maxValue:80}
         },
         backgroundColor: {fill:'#222', stroke:'#aaa'},
