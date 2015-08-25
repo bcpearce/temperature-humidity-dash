@@ -24,6 +24,17 @@ h1, h2, h3 {
   color: white;
 }
 
+button {
+	background-color: #99a;
+	border-radius: 6px;
+	border-width: 3px;
+	border-color: #222;
+}
+
+button:hover {
+	border-color: #b11;
+}
+
 #temp_chart_div {
   margin: auto;
 }
