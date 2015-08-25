@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  #root 'pages#index'
+  root 'graphs#index'
 
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
