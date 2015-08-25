@@ -6,10 +6,15 @@ google.load("visualization", "1", {packages:["corechart"]});
 //google.setOnLoadCallback(drawChart);
 google.setOnLoadCallback(drawChart);
 
+hours = gon.hours;
+if (!hours) {
+  hours = 12;
+}
+
 function drawChart() {
 
   var tJSON = $.getJSON(
-    "/api/v1/readings.json?hours=12",
+    "/api/v1/readings.json?hours=" + hours,
     function(data) {
 
       var vizData = [['Time', 'Temperature', 'Humidity']];
