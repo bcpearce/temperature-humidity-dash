@@ -16,7 +16,7 @@ class Api::V1::ReadingsController < Api::ApiController
   def index
     h = params[:hours].to_f
     h ||= 12
-    @readings = Reading.where('created_at >= ?', h.hours.ago)
+    @readings = Reading.where('created_at >= ?', h.hours.ago).order(:created_at)
     respond_to do |format|
       format.html
       format.json { render json: @readings }
