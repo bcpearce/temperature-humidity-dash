@@ -16,7 +16,14 @@ class Api::V1::ReadingsController < Api::ApiController
   def index
     h = params[:hours].to_f
     h ||= 12
-    @readings = Reading.where('created_at >= ?', h.hours.ago).order(:created_at)
+    s = params[:sensor_id]
+    if s
+      @readings = Reading.where('created_at >= ? AND sensor_id = ?', 
+        h.hours.ago, Sensor.find(s)).order(:created_at)
+    else
+      @readings = Reading.where('created_at >= ?', h.hours.ago).order(:created_at)
+    end
+
     respond_to do |format|
       format.html
       format.json { render json: @readings }
