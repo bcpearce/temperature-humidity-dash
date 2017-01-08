@@ -36,6 +36,11 @@ gem 'high_voltage', '~> 2.4.0'
 # javascript variable collaboration
 gem 'gon'
 
+# charts.js in asset pipeline
+gem 'chart-js-rails'
+# need timeseries charts
+gem 'momentjs-rails'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
