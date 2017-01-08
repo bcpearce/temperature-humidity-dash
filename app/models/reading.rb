@@ -1,5 +1,7 @@
 class Reading < ActiveRecord::Base
 
+  belongs_to :sensor
+
   before_save :round_measurements
 
   private
