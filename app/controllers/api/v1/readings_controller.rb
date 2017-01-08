@@ -25,6 +25,9 @@ class Api::V1::ReadingsController < Api::ApiController
 
   def create
     @reading = Reading.new(reading_params)
+
+    @reading.sensor = get_api_key
+
     if @reading.save
       respond_to do |format|
         format.json { render json: :show, status: :created, location: api_v1_reading_url(@reading) }
