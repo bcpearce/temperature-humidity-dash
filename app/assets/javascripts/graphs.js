@@ -67,13 +67,28 @@ function drawGraph(sensor_id, context, hours=12) {
                         }],
                         yAxes: [{
                             position: "left",
-                            "id": "y-axis-0"
+                            "id": "y-axis-0",
+                            ticks: {
+                                suggestedMin: 0,
+                                stepSize: 10,
+                                suggestedMax: 100
+                            }
                         }, {
                             position: "right",
-                            "id": "y-axis-1"
+                            "id": "y-axis-1",
+                            ticks: {
+                                suggestedMin: 0,
+                                stepSize: 10,
+                                suggestedMax: 100
+                            }
                         }]
                     }
                 }
             });
         });
 };
+
+//resize height of graphs based on width
+$(window).resize(function() {
+    $('canvas').height($('canvas').width() / 2.0);
+});

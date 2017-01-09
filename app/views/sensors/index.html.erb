@@ -1,11 +1,12 @@
 <h1>Sensor List</h1>
-<div id="charts">
+<div id="charts" class="row">
     <% @sensors.each do |s| %>
+    <div class="col-md-6">
         <h2><%= s.name %></h2>
-        <h3>Temperature <span id="latest_temperature"></span></h3>
-        <h3>Humidity <span id="latest_humidity"></span></h3>
-        <h3>In last <span id="hour_timeframe"><%= @hours %></span> hours</h3>
-        <canvas id=<%= "sensor"+s.id.to_s %> width="400" height="400"></canvas>
+        <h5>Temperature <span id="latest_temperature"></span></h5>
+        <h5>Humidity <span id="latest_humidity"></span></h5>
+        <h6>In last <span id="hour_timeframe"><%= @hours %></span> hours</h6>
+        <canvas id=<%= "sensor"+s.id.to_s %>></canvas>
 
         <div style="text-align:center;">
             <a href="/graphs?hours=12">
@@ -21,5 +22,6 @@
                 <button type="button">1 Week</button>
             </a>
         </div>
+    </div>
     <% end %>
 </div>

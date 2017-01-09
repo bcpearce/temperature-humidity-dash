@@ -1,0 +1,45 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ */
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+div.container-fluid, html {
+  background-color: #222;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  text-align: center;
+  font-family: "monospace";
+  color: white;
+}
+
+button {
+	background-color: #99a;
+	border-radius: 6px;
+	border-width: 3px;
+	border-color: #222;
+}
+
+button:hover {
+	border-color: #b11;
+}
+
+#temp_chart_div {
+  margin: auto;
+}
+
+canvas {
+    width: 100%;
+}
