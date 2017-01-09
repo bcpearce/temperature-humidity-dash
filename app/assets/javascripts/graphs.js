@@ -1,5 +1,4 @@
-
-window.onload = function() {
+function loadGraphs() {
 
     var contexts = $("#charts").find("canvas")
         .map(function() { return this.id; }).get();
@@ -91,3 +90,8 @@ function drawGraph(sensor_id, context, hours=12) {
             });
         });
 };
+
+window.onload = function() {
+    loadGraphs();
+}
+
