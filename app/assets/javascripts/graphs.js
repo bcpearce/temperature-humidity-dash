@@ -1,17 +1,19 @@
-function loadGraphs() {
+var charts = {};
 
+function loadGraphs() {
     var contexts = $("#charts").find("canvas")
-        .map(function() { return this.id; }).get();
+        .map(function() { return this; }).get();
 
     hours = 12;
 
     for (i in contexts) {
         drawGraph(parseInt(i)+1, contexts[i], hours);
-    }
-        
+    }   
 };
 
 function drawGraph(sensor_id, context, hours=12) {
+    var chart = null;
+
     var tJSON = $.getJSON(
         "/api/v1/readings.json?hours=" + hours + "&sensor_id=" + sensor_id,
         function(data) {
@@ -40,8 +42,11 @@ function drawGraph(sensor_id, context, hours=12) {
                 }
             }
 
-            var ctx = document.getElementById(context);
-            var chart = new Chart(ctx, {
+            var ctx = document.getElementById(context.id);
+            if (charts[context.id]) {
+                charts[context.id].destroy();
+            }
+            chart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     datasets: [{
@@ -89,6 +94,7 @@ function drawGraph(sensor_id, context, hours=12) {
                 }
             });
         });
+    charts[context] = chart;
 };
 
 window.onload = function() {
