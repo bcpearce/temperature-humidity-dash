@@ -21,7 +21,7 @@ div.container-fluid, html {
 
 h1, h2, h3, h4, h5, h6 {
   text-align: center;
-  font-family: "monospace";
+  font-family: "helvetica";
   color: white;
 }
 
@@ -42,4 +42,9 @@ button:hover {
 
 canvas {
     width: 100%;
+}
+
+span.hour_mark {
+    color: orange;
+    font-style: italic;
 }

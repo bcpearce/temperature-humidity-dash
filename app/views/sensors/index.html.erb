@@ -3,24 +3,20 @@
     <% @sensors.each do |s| %>
     <div class="col-md-6">
         <h2><%= s.name %></h2>
-        <h5>Temperature <span id="latest_temperature"></span></h5>
-        <h5>Humidity <span id="latest_humidity"></span></h5>
-        <h6>In last <span id="hour_timeframe"><%= @hours %></span> hours</h6>
+        <h5>Temperature 
+        <span id=<%= "latest_temperature"+s.id.to_s %>></span></h5>
+        <h5>Humidity 
+        <span id=<%= "latest_humidity"+s.id.to_s %>></span></h5>
+        <h6>In last 
+        <span id=<%= "hour_timeframe"+s.id.to_s %> class="hour_mark"><%= @hours %>
+        </span> hours</h6>
         <canvas id=<%= "sensor"+s.id.to_s %>></canvas>
 
         <div style="text-align:center;">
-            <a href="/graphs?hours=12">
-                <button type="button">12 Hours</button>
-            </a>
-            <a href="/graphs?hours=24">
-                <button type="button">24 Hours</button>
-            </a>
-            <a href="/graphs?hours=48">
-                <button type="button">48 Hours</button>
-            </a>
-            <a href="/graphs?hours=176">
-                <button type="button">1 Week</button>
-            </a>
+            <button type="button" onclick="drawGraph(<%= s.id %>, <%="sensor"+s.id.to_s %>, 12)">12 Hours</button>
+            <button type="button" onclick="drawGraph(<%= s.id %>, <%="sensor"+s.id.to_s %>, 24)">24 Hours</button>
+            <button type="button" onclick="drawGraph(<%= s.id %>, <%="sensor"+s.id.to_s %>, 48)">48 Hours</button>
+            <button type="button" onclick="drawGraph(<%= s.id %>, <%="sensor"+s.id.to_s %>, 24*7)">1 Week</button>
         </div>
     </div>
     <% end %>

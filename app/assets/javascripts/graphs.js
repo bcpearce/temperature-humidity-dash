@@ -23,6 +23,8 @@ function drawGraph(sensor_id, context, hours=12) {
             var humidityData = [];
             var temperatureData = [];
 
+            $("#hour_timeframe" + sensor_id).html(" " + hours + " ");
+
             for (var j = 0; j < dataLength; j++) {
                 date = new Date(data[j].created_at);
                 temp = parseFloat(data[j].temperature);
@@ -32,8 +34,10 @@ function drawGraph(sensor_id, context, hours=12) {
                 temperatureData.push({x:date, y:temp});
                 //set the latest ones
                 if (j == (dataLength-1)) {
-                    $("#latest_temperature").html("(" + temp + "&#8457)")
-                    $("#latest_humidity").html("(" + hum + "%)")
+                    $("#latest_temperature" + sensor_id)
+                        .html("(" + temp + "&#8457)");
+                    $("#latest_humidity"+ sensor_id)
+                        .html("(" + hum + "%)");
                 }
             }
 
@@ -87,8 +91,3 @@ function drawGraph(sensor_id, context, hours=12) {
             });
         });
 };
-
-//resize height of graphs based on width
-$(window).resize(function() {
-    $('canvas').height($('canvas').width() / 2.0);
-});
