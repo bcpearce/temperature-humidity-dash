@@ -16,7 +16,14 @@ class Api::V1::ReadingsController < Api::ApiController
   def index
     h = params[:hours].to_f
     h ||= 12
-    @readings = Reading.where('created_at >= ?', h.hours.ago).order(:created_at)
+    s = params[:sensor_id]
+    if s
+      @readings = Reading.where('created_at >= ? AND sensor_id = ?', 
+        h.hours.ago, Sensor.find(s)).order(:created_at)
+    else
+      @readings = Reading.where('created_at >= ?', h.hours.ago).order(:created_at)
+    end
+
     respond_to do |format|
       format.html
       format.json { render json: @readings }
@@ -25,6 +32,9 @@ class Api::V1::ReadingsController < Api::ApiController
 
   def create
     @reading = Reading.new(reading_params)
+
+    @reading.sensor = get_api_key
+
     if @reading.save
       respond_to do |format|
         format.json { render json: :show, status: :created, location: api_v1_reading_url(@reading) }
