@@ -36,6 +36,14 @@ gem 'high_voltage', '~> 2.4.0'
 # javascript variable collaboration
 gem 'gon'
 
+# charts.js in asset pipeline
+gem 'chart-js-rails'
+# need timeseries charts
+gem 'momentjs-rails'
+
+# bootstrap for mobile support
+gem 'bootstrap-sass', '~> 3.3.6'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -59,6 +67,11 @@ group :development, :test do
 
   # RSpec Test Framework
   gem 'rspec-rails', '~> 3.0'
+
+end
+
+group :test do
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 # ruby version
