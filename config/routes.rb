@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
 
-  root 'graphs#index'
+  root 'sensors#index'
 
   get '/sensors/:id',   to: 'sensors#show'
   get '/sensors',       to: 'sensors#index'
