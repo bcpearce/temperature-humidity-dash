@@ -1,4 +1,5 @@
-var charts = {};
+
+var data_charts = {};
 
 function loadGraphs() {
     var contexts = $("#charts").find("canvas")
@@ -8,29 +9,29 @@ function loadGraphs() {
 
     for (i in contexts) {
         drawGraph(parseInt(i)+1, contexts[i], hours);
-    }   
-};
+    }
+}
 
-function drawGraph(sensor_id, context, hours=12) {
+function drawGraph(sensor_id, context, hours) {
+    
     var chart = null;
-
+    
     var tJSON = $.getJSON(
         "/api/v1/readings.json?hours=" + hours + "&sensor_id=" + sensor_id,
         function(data) {
-
-            //var vizData = [['Time', 'Temperature', 'Humidity']];
+            
             var dataLength = data.length;
 
             var humidityData = [];
             var temperatureData = [];
 
             $("#hour_timeframe" + sensor_id).html(" " + hours + " ");
-
+            
             for (var j = 0; j < dataLength; j++) {
-                date = new Date(data[j].created_at);
-                temp = parseFloat(data[j].temperature);
-                hum = parseFloat(data[j].humidity);
-                //vizData.push([date, temp, hum]);
+                var date = new Date(data[j].created_at);
+                var temp = parseFloat(data[j].temperature);
+                var hum = parseFloat(data[j].humidity);
+                
                 humidityData.push({x:date, y:hum});
                 temperatureData.push({x:date, y:temp});
                 //set the latest ones
@@ -43,10 +44,11 @@ function drawGraph(sensor_id, context, hours=12) {
             }
 
             var ctx = document.getElementById(context.id);
-            if (charts[context.id]) {
-                charts[context.id].destroy();
+            if (data_charts[context.id]) {
+                data_charts[context.id].destroy();
             }
-            chart = new Chart(ctx, {
+            
+            var data_chart = new Chart(ctx, {
                 type: 'line',
                 data: {
                     datasets: [{
@@ -94,10 +96,10 @@ function drawGraph(sensor_id, context, hours=12) {
                 }
             });
         });
-    charts[context] = chart;
-};
+    data_charts[context] = data_chart;
+    
+}
 
 window.onload = function() {
     loadGraphs();
 }
-
