@@ -29,9 +29,9 @@ if __name__ == "__main__":
                 print 'example: sudo ./read_and_post.py 2302 4 - Read from an AM2302 connected to GPIO #4'
                 sys.exit(1)
 
-        http_lead = re.compile("\Ahttp(?s)://")
+        http_lead = re.compile("\Ahttps?://")
         if not http_lead.match(host):
-                host = "http://" + host
+                raise ValueError("Must specify application protocol")
 
         route = host + "/api/v1/readings"
 
@@ -56,8 +56,7 @@ if __name__ == "__main__":
                         r = requests.post(route, data=data, headers=headers)
                         print "{0}\tT:{1:.2f}F\tH:{2:.2f}\t@ {3}".format(r.status_code, temperature, humidity, datetime.datetime.now())
                     except:
-                        print "POST failed, trying again soon"
+                        print "POST to {0} failed, trying again soon".format(host)
 
 
                 time.sleep(slp_time)
-
